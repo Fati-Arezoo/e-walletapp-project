@@ -11,32 +11,34 @@ function Home() {
   return (
     <div className="home-page">
       <div className="active">
-        {card.map((card, i) => {
-          if (card.activeCard) {
-            return <Card key={i} {...card} zIndex={i} />;
-          }
-          return null;
-        })}
+        {card &&
+          card.map((card, i) => {
+            if (card.activeCard) {
+              return <Card key={i} {...card} zIndex={i} />;
+            }
+            return null;
+          })}
       </div>
 
       <div className="notactive-card">
-        {card.map((card, i) => {
-          if (!card.activeCard) {
-            return (
-              <div>
-                <i
-                  class="fas fa-times-circle"
-                  onClick={() => {
-                    dispatch(
-                      removeCard({ cvc: card.cvc, number: card.number })
-                    );
-                  }}
-                ></i>
-                <Card key={i} {...card} />
-              </div>
-            );
-          }
-        })}
+        {card &&
+          card.map((card, i) => {
+            if (!card.activeCard) {
+              return (
+                <div>
+                  <i
+                    class="fas fa-times-circle"
+                    onClick={() => {
+                      dispatch(
+                        removeCard({ cvc: card.cvc, number: card.number })
+                      );
+                    }}
+                  ></i>
+                  <Card key={i} {...card} />
+                </div>
+              );
+            }
+          })}
       </div>
 
       <div className="bttn">
